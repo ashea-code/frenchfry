@@ -1,0 +1,23 @@
+{
+  "name": "frenchfry",
+  "version": "1.0.0",
+  "description": "A tiny publishing platform",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "frenchfry",
+    "blog",
+    "art",
+    "comic",
+    "publishing",
+    "content"
+  ],
+  "author": "Aaron Shea",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.16.4",
+    "sequelize": "^4.42.0"
+  }
+}
