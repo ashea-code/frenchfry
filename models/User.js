@@ -1,8 +1,13 @@
 const Sequelize = require('sequelize');
 
-const User = {
+const UserModel = {
   tableName: 'user',
   schema: {
+    id: {
+      type: Sequelize.INTEGER,
+      primaryKey: true,
+      autoIncrement: true,
+    },
     email: Sequelize.STRING,
     displayname: Sequelize.STRING,
     passwordHash: Sequelize.STRING,
@@ -11,4 +16,4 @@ const User = {
   },
 };
 
-module.exports = User;
+module.exports = UserModel;

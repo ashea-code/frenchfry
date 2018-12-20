@@ -1,5 +1,4 @@
-const Database = require('./database');
+const models = require('./models');
 
-// Sync database schema
-const db = new Database();
-db.runMigration();
+// Build models and sync database
+models.database.sync();
