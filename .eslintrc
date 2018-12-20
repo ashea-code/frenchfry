@@ -1,0 +1,20 @@
+{
+    "env": {
+        "node": true,
+    },
+    "plugins": [],
+    "extends": "airbnb-base",
+    "parser": "babel-eslint",
+    "rules": {
+        "no-console": "off",
+        "no-unused-vars": ["error", { "argsIgnorePattern": "next" }],
+        "prefer-destructuring": ["error", {
+            "AssignmentExpression": {
+            "array": false,
+            "object": false
+            }
+        }],
+        "import/no-dynamic-require": "off",
+        "no-shadow": "off",
+    },
+}
