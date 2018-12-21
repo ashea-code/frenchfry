@@ -4,7 +4,8 @@
   "description": "A tiny publishing platform",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node index.js",
+    "dev": "nodemon index.js"
   },
   "keywords": [
     "frenchfry",
@@ -18,12 +19,19 @@
   "license": "MIT",
   "dependencies": {
     "babel-eslint": "^10.0.1",
+    "bcrypt": "^3.0.2",
+    "body-parser": "^1.18.3",
     "eslint": "^5.10.0",
     "eslint-config-airbnb-base": "^13.1.0",
     "eslint-plugin-import": "^2.14.0",
     "express": "^4.16.4",
     "express-session": "^1.15.6",
+    "node-color-log": "^2.1.2",
+    "nodemon": "^1.18.9",
+    "passport": "^0.4.0",
+    "passport-local": "^1.0.0",
     "sequelize": "^4.42.0",
+    "session-file-store": "^1.2.0",
     "sqlite3": "^4.0.4"
   }
 }
