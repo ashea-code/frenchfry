@@ -7,21 +7,26 @@ const User = require('../models').User;
 
 const userDatabaseCheck = (username, password, next) => {
   User.findOne({
-    where: { email: username },
+    where: { username },
   }).then((user) => {
     if (!user) {
       return next('Auth Error', null);
     }
 
-    bcrypt.compare(password, user.passwordHash, (res) => {
+    return bcrypt.compare(password, user.passwordHash, (err, res) => {
       if (!res) {
         return next('Auth Error', null);
       }
 
-      return next(null, user);
-    });
+      const cleanUser = {
+        id: user.id,
+        username: user.username,
+        displayname: user.displayname,
+        email: user.email,
+      };
 
-    return next('Auth Error', null);
+      return next(null, cleanUser);
+    });
   });
 };
 

@@ -8,11 +8,10 @@ const UserModel = {
       primaryKey: true,
       autoIncrement: true,
     },
-    email: Sequelize.STRING,
+    email: { unique: true, type: Sequelize.STRING },
     displayname: Sequelize.STRING,
     passwordHash: Sequelize.STRING,
-    username: Sequelize.STRING,
-    birthday: Sequelize.DATE,
+    username: { unique: true, type: Sequelize.STRING },
   },
 };
 

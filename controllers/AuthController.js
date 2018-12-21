@@ -8,11 +8,17 @@ const router = new express.Router();
 
 router.use(respHelpers.setJSON);
 
-router.post('/', passport.authenticate('local'), (req, res) => res.status(200));
+router.post('/', passport.authenticate('local'), (req, res) => res.redirect('/api/auth/me'));
 
 router.use('/me', auth.ensureAuthed);
 router.get('/me', (req, res) => {
   res.send(req.user);
+});
+
+router.use('/logout', auth.ensureAuthed);
+router.get('/logout', (req, res) => {
+  req.logout();
+  res.send({ status: 200 });
 });
 
 module.exports = router;
