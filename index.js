@@ -50,5 +50,6 @@ app.use(passport.session());
 app.use('/api/auth', require('./controllers/AuthController'));
 app.use('/api/user', require('./controllers/UserController'));
 app.use('/api/post', require('./controllers/PostController'));
+app.use('/api/tag', require('./controllers/TagController'));
 
 app.listen(config.serverPort, () => logger.info(`Frenchfry is now running on port ${config.serverPort}!`));

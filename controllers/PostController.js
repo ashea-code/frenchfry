@@ -50,8 +50,11 @@ router.get('/', async (req, res) => {
   });
 });
 
-// POST
+// All routes from now on need auth
 router.use(auth.ensureAuthed);
+
+// POST
+
 router.post('/', async (req, res) => {
   // Validate post type
   const type = req.body.type;

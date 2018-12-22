@@ -10,6 +10,7 @@ const CollectionModel = {
     },
     title: Sequelize.STRING,
     subtitle: Sequelize.STRING,
+    slug: { unique: true, type: Sequelize.STRING },
   },
 };
 

@@ -8,7 +8,7 @@ const TagModel = {
       primaryKey: true,
       autoIncrement: true,
     },
-    title: Sequelize.STRING,
+    title: { unique: true, type: Sequelize.STRING },
     nsfw: Sequelize.BOOLEAN,
   },
 };
