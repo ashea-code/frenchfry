@@ -29,7 +29,12 @@ router.post('/:id/tag', async (req, res) => {
     const foundTags = results[0];
     const foundPost = results[1];
 
-    foundPost.addTags(foundTags).then((tags) => {
+    // You cannot tag a post you don't own
+    if (foundPost.authorId !== req.user.id) {
+      return error.noAuthorized(res);
+    }
+
+    return foundPost.addTags(foundTags).then((tags) => {
       res.send(tags);
     });
   }).catch(err => error.badRequest(res, err.errors[0].message));
@@ -52,7 +57,12 @@ router.delete('/:id/tag', async (req, res) => {
     const foundTags = results[0];
     const foundPost = results[1];
 
-    foundPost.removeTags(foundTags).then(() => {
+    // You cannot untag a post you don't own
+    if (foundPost.authorId !== req.user.id) {
+      return error.noAuthorized(res);
+    }
+
+    return foundPost.removeTags(foundTags).then(() => {
       res.send(foundPost);
     });
   }).catch(err => error.badRequest(res, err.errors[0].message));
