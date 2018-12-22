@@ -15,6 +15,21 @@ const router = new express.Router();
 router.use(respHelpers.setJSON);
 router.use(auth.ensureAuthed);
 
+// GET
+
+router.get('/:id', async (req, res) => {
+  const id = req.params.id;
+  Post.findOne({ where: { id } }).then((post) => {
+    if (!post) {
+      return error.notFound(res, 'Post not found.');
+    }
+
+    return res.send(post);
+  });
+});
+
+// POST
+
 router.post('/', async (req, res) => {
   // Validate post type
   const type = req.body.type;

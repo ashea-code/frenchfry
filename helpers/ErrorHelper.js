@@ -10,6 +10,12 @@ const badRequest = (res, err = '') => {
   res.send(JSON.stringify(body));
 };
 
+const notFound = (res, err = '') => {
+  const body = { status: 404, error: err };
+  res.status(404);
+  res.send(JSON.stringify(body));
+};
+
 const internalError = (res, err = '') => {
   const body = { status: 500, error: err };
   res.status(500);
@@ -20,4 +26,5 @@ module.exports = {
   badRequest,
   internalError,
   notAuthorized,
+  notFound,
 };
