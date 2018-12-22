@@ -13,7 +13,6 @@ const PostTypes = require('../constants/PostTypes');
 const router = new express.Router();
 
 router.use(respHelpers.setJSON);
-router.use(auth.ensureAuthed);
 
 // GET
 
@@ -52,7 +51,7 @@ router.get('/', async (req, res) => {
 });
 
 // POST
-
+router.use(auth.ensureAuthed);
 router.post('/', async (req, res) => {
   // Validate post type
   const type = req.body.type;
@@ -112,6 +111,27 @@ router.post('/', async (req, res) => {
     res.status(201);
     res.send(newPost);
   }).catch(err => error.badRequest(res, err.errors[0].message));
+});
+
+// DELETE
+
+router.delete('/:id', async (req, res) => {
+  const id = req.params.id;
+  Post.findOne({ where: { id } }).then((post) => {
+    if (!post) {
+      return error.notFound(res, 'Post not found.');
+    }
+
+    // Check ownership
+    if (post.authorId !== req.user.id) {
+      return error.notAuthorized(res);
+    }
+
+    return Post.destroy({ where: { id: post.id } }).then(() => {
+      res.status(204);
+      return res.send({});
+    });
+  });
 });
 
 module.exports = router;
