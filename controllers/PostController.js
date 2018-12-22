@@ -28,6 +28,29 @@ router.get('/:id', async (req, res) => {
   });
 });
 
+router.get('/', async (req, res) => {
+  const id = req.query.id;
+  const slug = req.query.slug;
+
+  const searchParams = { };
+
+  if (id) {
+    searchParams.id = id;
+  }
+
+  if (slug) {
+    searchParams.slug = slug;
+  }
+
+  Post.findAll({ where: searchParams, limit: 100 }).then((posts) => {
+    if (!posts) {
+      return error.notFound(res, 'No Posts Found.');
+    }
+
+    return res.send(posts);
+  });
+});
+
 // POST
 
 router.post('/', async (req, res) => {
