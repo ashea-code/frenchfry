@@ -38,6 +38,7 @@ router.post('/', async (req, res) => {
       displayname,
       passwordHash,
     }).then((user) => {
+      res.status(201);
       res.send(user);
     }).catch(err => error.badRequest(res, err.errors[0].message));
   });
