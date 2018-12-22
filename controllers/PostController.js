@@ -3,6 +3,7 @@ const express = require('express');
 const sanitizeHtml = require('sanitize-html');
 
 const Post = require('../models').Post;
+const Tag = require('../models').Tag;
 
 const auth = require('../helpers/AuthHelper.js');
 const error = require('../helpers/ErrorHelper.js');
@@ -18,7 +19,7 @@ router.use(respHelpers.setJSON);
 
 router.get('/:id', async (req, res) => {
   const id = req.params.id;
-  Post.findOne({ where: { id } }).then((post) => {
+  Post.findOne({ where: { id }, include: [Tag] }).then((post) => {
     if (!post) {
       return error.notFound(res, 'Post not found.');
     }
@@ -41,7 +42,7 @@ router.get('/', async (req, res) => {
     searchParams.slug = slug;
   }
 
-  Post.findAll({ where: searchParams, limit: 100 }).then((posts) => {
+  Post.findAll({ where: searchParams, limit: 100, include: [Tag] }).then((posts) => {
     if (!posts) {
       return error.notFound(res, 'No Posts Found.');
     }
