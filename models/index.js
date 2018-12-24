@@ -21,6 +21,9 @@ Post.belongsTo(User, { as: 'author' });
 Tag.belongsTo(User, { as: 'author' });
 Collection.belongsTo(User, { as: 'author' });
 
+// A user owns the site
+SiteProps.belongsTo(User, { as: 'owner' });
+
 // A post can belong to many collections and many tags
 Post.belongsToMany(Tag, { through: 'tagged_posts' });
 Post.belongsToMany(Collection, { through: 'collected_posts' });

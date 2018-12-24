@@ -117,6 +117,64 @@ router.post('/', async (req, res) => {
   }).catch(err => error.badRequest(res, err.errors[0].message));
 });
 
+// PATCH
+router.patch('/:id', async (req, res) => {
+  const patchParams = {};
+
+  let title = req.body.title;
+  let subtitle = req.body.subtitle;
+  let content = req.body.content;
+  let posted = req.body.posted;
+  const nsfw = req.body.nsfw;
+
+  if (title) {
+    title = sanitizeHtml(title, { allowedTags: [], allowedAttributes: [] });
+    patchParams.title = title;
+    patchParams.slug = makeSlug(title);
+  }
+
+  if (subtitle) {
+    subtitle = sanitizeHtml(subtitle, { allowedTags: [], allowedAttributes: [] });
+    patchParams.subtitle = subtitle;
+  }
+
+  if (content) {
+    content = sanitizeHtml(content);
+    patchParams.content = content;
+  }
+
+  if (posted) {
+    posted = Date.parse(posted);
+
+    // If we could not parse a valid date default to now
+    if (!posted) {
+      posted = new Date();
+    }
+
+    patchParams.posted = posted;
+  }
+
+  if (nsfw || nsfw === false) {
+    patchParams.nsfw = nsfw;
+  }
+
+  // Test existing post
+  const existingPost = await Post.findOne({
+    where: {
+      id: req.params.id,
+      authorId: req.user.id,
+    },
+  });
+
+  if (!existingPost) {
+    return error.notFound(res, 'Post not found.');
+  }
+
+  return existingPost.update(patchParams)
+    .then(newPost => res.send(newPost))
+    .catch(err => error.badRequest(res, err.errors[0].message));
+});
+
 // DELETE
 
 router.delete('/:id', async (req, res) => {

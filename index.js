@@ -23,7 +23,7 @@ const app = express();
 app.use(morgan('tiny'));
 
 app.use(session({
-  store: new FileStore({ logFn: logger.info.bind(logger) }),
+  store: new FileStore({ logFn: logger.info.bind(logger), path: config.sessionFilePath }),
   name: 'Frenchfry',
   resave: true,
   saveUninitialized: false,
@@ -49,6 +49,7 @@ app.use(passport.session());
 // Assign routes
 app.use('/api/auth', require('./controllers/AuthController'));
 app.use('/api/user', require('./controllers/UserController'));
+app.use('/api/site', require('./controllers/SiteController'));
 app.use('/api/post', require('./controllers/PostController'));
 app.use('/api/post', require('./controllers/TaggedPostController'));
 app.use('/api/tag', require('./controllers/TagController'));
