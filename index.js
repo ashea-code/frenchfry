@@ -54,5 +54,6 @@ app.use('/api/post', require('./controllers/PostController'));
 app.use('/api/post', require('./controllers/TaggedPostController'));
 app.use('/api/tag', require('./controllers/TagController'));
 app.use('/api/collection', require('./controllers/CollectionController'));
+app.use('/api/post', require('./controllers/CollectedPostController'));
 
 app.listen(config.serverPort, () => logger.info(`Frenchfry is now running on port ${config.serverPort}!`));
