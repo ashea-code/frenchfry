@@ -5,10 +5,13 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "dev": "nodemon index.js"
+    "dev": "nodemon index.js",
+    "build": "cd public_src && webpack --mode production"
   },
   "nodemonConfig": {
-    "ignore": ["sessions/*"]
+    "ignore": [
+      "sessions/*"
+    ]
   },
   "keywords": [
     "frenchfry",
@@ -21,23 +24,39 @@
   "author": "Aaron Shea",
   "license": "MIT",
   "dependencies": {
+    "babel-core": "^6.26.3",
     "babel-eslint": "^10.0.1",
+    "babel-loader": "^7.1.5",
+    "babel-polyfill": "^6.26.0",
+    "babel-preset-airbnb": "^2.6.0",
     "bcrypt": "^3.0.2",
     "body-parser": "^1.18.3",
+    "copy-webpack-plugin": "^4.6.0",
     "eslint": "^5.10.0",
     "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-import-resolver-webpack": "^0.10.1",
+    "eslint-loader": "^2.1.1",
     "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-jsx-a11y": "^6.1.2",
+    "eslint-plugin-react": "^7.11.1",
     "express": "^4.16.4",
     "express-session": "^1.15.6",
+    "html-webpack-plugin": "^3.2.0",
+    "mini-css-extract-plugin": "^0.5.0",
     "morgan": "^1.9.1",
     "node-color-log": "^2.1.2",
     "nodemon": "^1.18.9",
     "passport": "^0.4.0",
     "passport-local": "^1.0.0",
+    "react": "^16.7.0",
+    "react-dom": "^16.7.0",
     "sanitize-html": "^1.20.0",
     "sequelize": "^4.42.0",
     "session-file-store": "^1.2.0",
     "slug": "^0.9.3",
-    "sqlite3": "^4.0.4"
+    "sqlite3": "^4.0.4",
+    "webpack": "^4.28.2",
+    "webpack-cli": "^3.1.2",
+    "webpack-notifier": "^1.7.0"
   }
 }

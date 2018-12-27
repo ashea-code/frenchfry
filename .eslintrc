@@ -1,12 +1,15 @@
 {
     "env": {
         "node": true,
+        "browser": true,
     },
-    "plugins": [],
-    "extends": "airbnb-base",
+    "plugins": ["import", "react"],
+    "extends": ["airbnb-base", "plugin:react/recommended"],
     "parser": "babel-eslint",
     "rules": {
+        "import/extensions": 0,
         "no-console": "off",
+        "linebreak-style": "off",
         "no-unused-vars": ["error", { "argsIgnorePattern": "next" }],
         "prefer-destructuring": ["error", {
             "AssignmentExpression": {
@@ -16,5 +19,12 @@
         }],
         "import/no-dynamic-require": "off",
         "no-shadow": "off",
+    },
+    "settings": {
+        "import/resolver": {
+            "webpack": {
+                "config": "public_src/webpack.config.js"
+            }
+        }
     },
 }
