@@ -11,6 +11,7 @@
         "no-console": "off",
         "linebreak-style": "off",
         "no-unused-vars": ["error", { "argsIgnorePattern": "next" }],
+        "import/no-extraneous-dependencies": ["error", {"devDependencies": true}],
         "prefer-destructuring": ["error", {
             "AssignmentExpression": {
             "array": false,
@@ -18,12 +19,17 @@
             }
         }],
         "import/no-dynamic-require": "off",
+        "import/no-unresolved": "off",
         "no-shadow": "off",
     },
     "settings": {
         "import/resolver": {
             "webpack": {
                 "config": "public_src/webpack.config.js"
+            },
+            "node": {
+                "paths": ["../**/node_modules"],
+                "extensions": [".js", ".jsx", ".ts", ".tsx"]
             }
         }
     },

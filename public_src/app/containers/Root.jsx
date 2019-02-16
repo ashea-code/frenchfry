@@ -1,7 +1,9 @@
 import React from 'react';
 
+import MainPage from './MainPage';
+
 const Root = () => (
-  <div />
+  <MainPage />
 );
 
 export default Root;
