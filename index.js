@@ -58,6 +58,7 @@ app.use('/api/post', require('./controllers/CollectedPostController'));
 
 // Admin panel
 // Server public content from the public folder
-app.use('/admin', express.static('public'));
+app.use(express.static('./public'));
+app.use('/**', express.static('./public'));
 
 app.listen(config.serverPort, () => logger.info(`Frenchfry is now running on port ${config.serverPort}!`));
