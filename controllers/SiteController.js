@@ -10,7 +10,15 @@ const respHelpers = require('../helpers/RespHelper.js');
 const router = new express.Router();
 
 router.use(respHelpers.setJSON);
-router.use(auth.ensureAuthed);
+
+router.get('/', async (req, res) => {
+  const currentSiteProps = await SiteProps.findOne();
+  if (!currentSiteProps) {
+    return error.badRequest(res, 'Site is not set up yet');
+  }
+
+  return res.send(currentSiteProps);
+});
 
 router.post('/', async (req, res) => {
   // Do not allow the site to be set up twice
@@ -36,6 +44,9 @@ router.post('/', async (req, res) => {
 
   return res.send(site);
 });
+
+// The reset of these routes require auth
+router.use(auth.ensureAuthed);
 
 router.patch('/', async (req, res) => {
   let siteTitle = req.body.siteTitle;

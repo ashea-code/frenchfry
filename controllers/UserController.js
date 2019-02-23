@@ -25,6 +25,14 @@ router.post('/', async (req, res) => {
     return error.badRequest(res, 'Password must be at least 8 characters long');
   }
 
+  // Allow the first user to be made without auth
+  const userCount = await User.count();
+  if (userCount > 0) {
+    if (!req.isAuthenticated()) {
+      return error.notAuthorized(res);
+    }
+  }
+
   // Hash the password
   return bcrypt.hash(password, 5, (err, passwordHash) => {
     if (err) {
