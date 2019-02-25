@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "concurrently -n webpack,frenchfry 'cd public_src && webpack --mode production' 'node index.js'",
-    "dev": "concurrently -n frenchfry,webpack 'nodemon index.js' 'cd public_src && webpack-dev-server --mode development'",
+    "dev": "concurrently -n frenchfry,webpack 'nodemon --ignore public_src index.js' 'cd public_src && webpack-dev-server --mode development'",
     "build": "cd public_src && webpack --mode production"
   },
   "nodemonConfig": {
@@ -32,6 +32,7 @@
     "bcrypt": "^3.0.2",
     "body-parser": "^1.18.3",
     "concurrently": "^4.1.0",
+    "connected-react-router": "^6.3.1",
     "copy-webpack-plugin": "^4.6.0",
     "css-loader": "^2.1.0",
     "eslint": "^5.10.0",
@@ -58,7 +59,7 @@
     "react-redux": "^6.0.1",
     "react-router": "^4.3.1",
     "react-router-dom": "^4.3.1",
-    "react-router-redux": "^4.0.8",
+    "react-router-redux": "^5.0.0-alpha.9",
     "redux": "^4.0.1",
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.3.0",

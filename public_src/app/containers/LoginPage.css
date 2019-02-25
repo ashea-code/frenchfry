@@ -1,0 +1,11 @@
+/* Dumb dirty hack to get rid of that logo */
+div.col.col-login.mx-auto div.text-center.mb-6 img.h-6 {
+	display: none;
+}
+
+.error-box {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+}

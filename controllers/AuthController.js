@@ -10,6 +10,12 @@ router.use(respHelpers.setJSON);
 
 router.post('/', passport.authenticate('local'), (req, res) => res.redirect('/api/auth/me'));
 
+router.get('/check', (req, res) => {
+  res.send({
+  	authenticated: req.isAuthenticated(),
+  });
+});
+
 router.use('/me', auth.ensureAuthed);
 router.get('/me', (req, res) => {
   res.send(req.user);
