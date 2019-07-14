@@ -13,7 +13,7 @@ const checkAuth = (rest, Component, routerProp) => {
 
   // Redirect to auth failed page
   return (<Redirect
-    to={redirectUrl}
+    to={`${redirectUrl}&error=login_error`}
   />);
 };
 

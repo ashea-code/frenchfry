@@ -2,12 +2,14 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
+
 import 'tabler-react/dist/Tabler.css';
 import './LoginPage.css';
 
-import { LoginPage as LoginElm, Alert } from 'tabler-react';
-
+import { LoginPage as LoginElm } from 'tabler-react';
 import { checkIfAuthed, getUserInfo, userLoggedIn } from 'actions/authActions';
+
+import { GenMsgBox } from '../utils/MessageBoxes';
 
 class LoginPage extends Component {
   checkAuth() {
@@ -38,11 +40,7 @@ class LoginPage extends Component {
 
     return (
       <div className="page-content">
-        <div className="error-box">
-          <Alert type="danger">
-            There was a problem logging you in!
-          </Alert>
-        </div>
+        {GenMsgBox()}
         <LoginElm />
       </div>
     );

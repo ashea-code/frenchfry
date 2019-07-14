@@ -14,6 +14,7 @@ import CollectionsPage from './CollectionsPage';
 import UsersPage from './UsersPage';
 
 import LoginPage from './LoginPage';
+import SetupPage from './SetupPage';
 
 import 'tabler-react/dist/Tabler.css';
 
@@ -32,6 +33,7 @@ const MainPage = () => (
           <PrivateRoute path='/admin/collections' exact component={CollectionsPage} />
           <PrivateRoute path='/admin/users' exact component={UsersPage} />
           <Route path='/authCheck' component={LoginPage} />
+          <Route path='/setup' component={SetupPage} />
         </Switch>
       </div>
     </ConnectedRouter>
