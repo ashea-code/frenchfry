@@ -12,6 +12,16 @@ import { checkIfAuthed, getUserInfo, userLoggedIn } from 'actions/authActions';
 import { GenMsgBox } from '../utils/MessageBoxes';
 
 class LoginPage extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      redirectURL: null,
+      username: '',
+      password: '',
+    };
+  }
+
   checkAuth() {
     checkIfAuthed((result) => {
       if (result) {
@@ -28,6 +38,7 @@ class LoginPage extends Component {
   }
 
   componentDidMount() {
+    this.checkAuth();
     const searchParams = new URLSearchParams(window.location.search);
     const returnURL = searchParams.get('afterAuth');
     this.setState({
@@ -35,13 +46,46 @@ class LoginPage extends Component {
     });
   }
 
-  render() {
-    this.checkAuth();
+  updateFormValues(e) {
+    const type = e.target.name;
 
+    if (type === 'email') {
+      this.setState({
+        username: e.target.value,
+      });
+      return;
+    }
+
+    if (type === 'password') {
+      this.setState({
+        password: e.target.password,
+      });
+    }
+  }
+
+  doLogin(e) {
+    e.preventDefault();
+    fetch('/auth', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(this.state),
+    })
+      .then(resp => resp.json())
+      .then(json => console.log(json));
+  }
+
+  render() {
     return (
       <div className="page-content">
         {GenMsgBox()}
-        <LoginElm />
+        <LoginElm
+          values={{
+            email: this.state.username,
+            password: this.state.password,
+          }}
+          onChange={e => this.updateFormValues(e)}
+          onSubmit={e => this.doLogin(e)}
+        />
       </div>
     );
   }

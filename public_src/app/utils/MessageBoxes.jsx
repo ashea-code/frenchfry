@@ -1,7 +1,8 @@
 import React from 'react';
 
 export const MessageBoxTypes = {
-  login_error: { message: 'Please log in to continue' },
+  login_required_error: { message: 'Please log in to continue.' },
+  login_submit_error: { message: 'Sorry, something went wrong. Try again.' },
 };
 
 export const GenMsgBox = () => {

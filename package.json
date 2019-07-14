@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "concurrently -n webpack,frenchfry 'cd public_src && webpack --mode production' 'node index.js'",
-    "dev": "concurrently -n frenchfry,webpack 'nodemon --ignore public_src index.js' 'cd public_src && webpack-dev-server --mode development'",
+    "dev": "concurrently -n frenchfry,webpack 'nodemon index.js' 'cd public_src && webpack-dev-server --mode development'",
     "build": "cd public_src && webpack --mode production"
   },
   "nodemonConfig": {

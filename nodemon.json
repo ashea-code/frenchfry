@@ -1,0 +1,4 @@
+{
+  "verbose": true,
+  "ignore": ["db/*", "sessions/*.json", "public_src/*.*", "*.sqlite", "*.sqlite-journal"]
+}

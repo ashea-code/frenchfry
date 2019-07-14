@@ -12,7 +12,7 @@ router.post('/', passport.authenticate('local'), (req, res) => res.redirect('/ap
 
 router.get('/check', (req, res) => {
   res.send({
-  	authenticated: req.isAuthenticated(),
+    authenticated: req.isAuthenticated(),
   });
 });
 

@@ -1,0 +1,25 @@
+.setup-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.setup-form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%
+}
+
+.setup-form > * {
+    margin: 1em;
+}
+
+input {
+    margin: 5px;
+}
+
+.page-container {
+    margin: 0;
+}

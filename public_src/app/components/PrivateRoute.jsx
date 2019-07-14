@@ -13,7 +13,7 @@ const checkAuth = (rest, Component, routerProp) => {
 
   // Redirect to auth failed page
   return (<Redirect
-    to={`${redirectUrl}&error=login_error`}
+    to={`${redirectUrl}&msgBox=login_required_error`}
   />);
 };
 
@@ -30,7 +30,7 @@ const mapStateToProps = state => ({
 
 PrivateRoute.propTypes = {
   component: PropTypes.func.isRequired,
-  user: PropTypes.objectOf(PropTypes.string).isRequired,
+  user: PropTypes.objectOf(PropTypes.any).isRequired,
   location: PropTypes.objectOf(PropTypes.string).isRequired,
 };
 

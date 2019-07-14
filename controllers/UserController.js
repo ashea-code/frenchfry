@@ -45,8 +45,10 @@ router.post('/', async (req, res) => {
       username,
       displayname,
       passwordHash,
-    }).then((user) => {
+    }).then((newUser) => {
+      const user = newUser;
       res.status(201);
+      user.passwordHash = null;
       res.send(user);
     }).catch(err => error.badRequest(res, err.errors[0].message));
   });
