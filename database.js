@@ -6,7 +6,6 @@ const config = require('./config');
 const database = new Sequelize({
   dialect: 'sqlite',
   storage: config.databaseFilePath,
-  operatorsAliases: false,
   logging: logger.debug.bind(logger),
 });
 
