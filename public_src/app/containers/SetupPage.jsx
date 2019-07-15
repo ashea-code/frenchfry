@@ -73,9 +73,9 @@ class SetupPage extends Component {
       body: JSON.stringify(this.state.user),
     }).then(resp => resp.json());
 
-    if (!resp.id) {
+    if (!resp || resp.error) {
       this.setState({
-        error: 'Failed to create user!',
+        error: `User Creation: ${resp.error}`,
       });
       return;
     }
@@ -95,7 +95,7 @@ class SetupPage extends Component {
       credentials: 'include',
     }).then(resp => resp.json());
 
-    if (!resp.ownerId) {
+    if (!resp || !resp.ownerId) {
       this.setState({
         error: 'Something went wrong setting up the site!',
       });
@@ -115,6 +115,11 @@ class SetupPage extends Component {
         <Page className="setup-box">
           <Form className="setup-form" onSubmit={e => this.submit(e)}>
             <h1>Site Setup</h1>
+            {this.state.error !== ''
+              ? <div className="error-box">
+                  <p className="error-box-content">{this.state.error}</p>
+                </div>
+              : null}
             <Form.Group label="Site Properties">
               <Form.Input
                 name="siteTitle"

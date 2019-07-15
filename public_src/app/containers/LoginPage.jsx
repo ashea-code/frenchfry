@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 
 import 'tabler-react/dist/Tabler.css';
 import './LoginPage.css';
+import '../components/ErrorBox.css';
 
 import { LoginPage as LoginElm } from 'tabler-react';
 import { checkIfAuthed, getUserInfo, userLoggedIn } from 'actions/authActions';

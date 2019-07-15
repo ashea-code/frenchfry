@@ -3,20 +3,3 @@ div.col.col-login.mx-auto div.text-center.mb-6 img.h-6 {
 	display: none;
 }
 
-.error-box {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	width: 100%;
-}
-
-.error-box-content {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 1em;
-    color: #6b1110;
-    background-color: #f5d2d2;
-    border-color: #f1c1c0;
-    border: 1px solid;
-}
