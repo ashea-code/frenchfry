@@ -1,0 +1,9 @@
+.nav-link {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.nav-link > .icon {
+    padding: 5px;
+}
