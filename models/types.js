@@ -28,7 +28,7 @@ ModelAttributeTypes = {
   },
   ENUM: {
     sql: Sequelize.ENUM,
-    react: PropTypes.string
+    react: PropTypes.string,
   },
 };
 

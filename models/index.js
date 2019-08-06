@@ -1,2 +1,7 @@
+const Builder = require('../helpers/ModelBuilder.js');
+
 const Post = require('./Post.js');
-module.exports = { Post };
+
+module.exports = Builder({
+  Post,
+});
