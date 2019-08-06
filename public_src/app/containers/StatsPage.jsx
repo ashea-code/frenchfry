@@ -3,11 +3,13 @@ import React from 'react';
 import NavContainer from './NavContainer';
 
 import 'tabler-react/dist/Tabler.css';
+import './StatsPage.css';
 
 const StatsPage = () => (
   <div className="page-content">
     <NavContainer />
-    <h1>Stats</h1>
+    <div className="stats-container">
+    </div>
   </div>
 );
 
