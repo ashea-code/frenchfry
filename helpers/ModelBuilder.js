@@ -1,4 +1,5 @@
 const Sequelize = require('sequelize');
+const PropTypes = require('prop-types');
 
 const expandTypes = (attr) => {
   let sqlType = {};
@@ -17,6 +18,8 @@ const expandTypes = (attr) => {
   sqlType.allowNull = !attr.required;
   sqlType.defaultValue = attr.default || null;
 
+  const propType = sqlType.required ? attr.type.react.isRequired : attr.type.react;
+
   return { sql: sqlType, propType: attr.type.react };
 };
 
@@ -33,8 +36,10 @@ const CreateModels = (models) => {
 
     // Construct schema
     let schema = {};
+    let reactShapeObj = {};
     params.forEach((param, idx) => {
       schema[attrNames[idx]] = param.sql;
+      reactShapeObj[attrNames[idx]] = param.propType;
     });
 
     // Inject IDs into the schema
@@ -44,7 +49,9 @@ const CreateModels = (models) => {
       autoIncrement: true,
     };
 
-    return { tableName: name, schema };
+    const reactType = PropTypes.exact(reactShapeObj);
+
+    return { tableName: name, schema, reactType };
   });
 
   return built;
