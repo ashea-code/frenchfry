@@ -27,14 +27,16 @@ const CreateModels = (models) => {
   const vals = Object.values(models);
   const names = Object.keys(models);
 
-  const built = vals.map((mdl, idx) => {
+  const builtModels = {};
+
+  vals.forEach((mdl, idx) => {
     const name = names[idx];
     const attrNames = Object.keys(mdl);
 
     // Expand SQL types if needed
     const params = attrNames.map((attName) => expandTypes(mdl[attName]));
 
-    // Construct schema
+    // Construct schema + react type shape
     let schema = {};
     let reactShapeObj = {};
     params.forEach((param, idx) => {
@@ -51,10 +53,11 @@ const CreateModels = (models) => {
 
     const reactType = PropTypes.exact(reactShapeObj);
 
-    return { tableName: name, schema, reactType };
+    // Update built objs
+    builtModels[name] = { tableName: name, schema, reactType };
   });
 
-  return built;
+  return builtModels;
 };
 
 module.exports = CreateModels;

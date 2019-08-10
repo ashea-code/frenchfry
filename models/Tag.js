@@ -9,25 +9,10 @@ module.exports = {
   slug: {
     type: types.STRING,
     required: true,
-    unique: true,
-  },
-  subtitle: {
-    type: types.TEXT,
-  },
-  content: {
-    type: types.TEXT,
-    required: true,
-  },
-  posted: {
-    type: types.DATE,
   },
   nsfw: {
     type: types.BOOLEAN,
+    required: true,
     default: false,
   },
-  type: {
-    type: types.ENUM,
-    required: true,
-    values: Object.values(PostTypes),
-  },
-}
+};
