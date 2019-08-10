@@ -9,14 +9,15 @@ const Strategy = require('passport-local').Strategy;
 const logger = require('node-color-log');
 const morgan = require('morgan');
 
-const models = require('./models');
 const config = require('./config');
+
+const database = require('./models').database;
 
 const AuthHelper = require('./helpers/AuthHelper.js');
 
-// Build models and sync database tables
+// Build sync database tables
 logger.info('Going to sync DB schema...');
-models.database.sync();
+database.sync();
 
 // Build express server
 const app = express();
