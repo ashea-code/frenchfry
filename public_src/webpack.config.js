@@ -1,8 +1,11 @@
 const path = require('path');
+const webpack = require('webpack');
 const HtmlWebPackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const WebpackNotifierPlugin = require('webpack-notifier');
+
+const ReactDataModels = require('../models').react;
 
 const config = require('../config');
 
@@ -36,6 +39,9 @@ module.exports = {
     new CopyWebpackPlugin([
       { from: 'assets', to: 'assets' },
     ]),
+    new webpack.ProvidePlugin({
+      Models: ReactDataModels,
+    }),
     new WebpackNotifierPlugin({ excludeWarnings: true }),
   ],
   module: {
