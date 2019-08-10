@@ -1,6 +1,9 @@
 const Sequelize = require('sequelize');
 const PropTypes = require('prop-types');
 
+const Database = require('../database.js');
+const Relations = require('../models/relations.js');
+
 const expandTypes = (attr) => {
   let sqlType = {};
   // If we have an ENUM type we need to call a special function
@@ -60,4 +63,33 @@ const CreateModels = (models) => {
   return builtModels;
 };
 
-module.exports = CreateModels;
+const BuildDatabase = (models) => {
+  // Define the models
+  Object.values(models).forEach((model) => {
+    model.m = Database.define(model.tableName, model.schema);
+  });
+
+  // Build model relations
+  Relations.forEach((relation) => {
+    const keys = Object.keys(relation);
+    if (keys.includes('belongsTo')) {
+      const a = models[relation.this].m;
+      const b = models[relation.belongsTo].m;
+      if (a && b) {
+        a.belongsTo(b, { as: relation.as });
+      }
+    }
+
+    if (keys.includes('belongsToMany')) {
+      const a = models[relation.this].m;
+      const b = models[relation.belongsToMany].m;
+      if (a && b) {
+        a.belongsToMany(b, { through: relation.as });
+      }
+    }
+  });
+
+  return { models, database: Database };
+}
+
+module.exports = (m) => BuildDatabase(CreateModels(m));

@@ -1,5 +1,9 @@
 const Builder = require('../helpers/ModelBuilder.js');
 
+const Database = require('../database.js');
+
+const relations = require('./relations.js');
+
 const Post = require('./Post.js');
 const SiteProps = require('./SiteProps.js');
 const Collection = require('./Collection.js');
