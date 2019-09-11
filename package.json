@@ -67,7 +67,7 @@
     "sequelize": "^6.0.0",
     "session-file-store": "^1.2.0",
     "slug": "^0.9.3",
-    "sqlite3": "^4.0.4",
+    "sqlite3": "^4.1.0",
     "style-loader": "^0.23.1",
     "tabler-react": "^2.0.0-alpha.1",
     "url-loader": "^1.1.2",
